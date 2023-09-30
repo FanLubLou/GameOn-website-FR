@@ -1,5 +1,5 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
+  let x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
   } else {
@@ -43,11 +43,23 @@ function closeModal() {
 
 // fonction de validation taille nom
 // Cette fontion pourra être appelée pour valider le prénom (2 caratères min) & le nom (2 caratères min)
-function validateName(name) { 
+function validateName(name, id) { 
   if (name.length >= 2) {
     return true
+  } else {
+    let formData
+    let contenuText
+    if (id === "first") {
+      formData = document.querySelectorAll(".formData")[0]
+      contenuText = "Veuillez entrer 2 caractères ou plus pour le champ prénom"
+    } else {
+      formData = document.querySelectorAll(".formData")[1]
+      contenuText = "Veuillez entrer 2 caractères ou plus pour le champ nom"
+      }   
+      let nouvelleDiv = document.createElement("div")
+      formData.appendChild(nouvelleDiv)
+      nouvelleDiv.textContent = contenuText
   }
-  return false
 } 
   
 // fonction de validation de l'email (nécessaire?)
@@ -58,8 +70,13 @@ function validateName(name) {
   function validateEmail(Email) {
     let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+")
     if (emailRegExp.test(Email)) {
-      return true } 
-      return false
+      return true
+    } else {
+      let email = document.querySelectorAll(".formData")[2]
+      let nouvelleDivEmail = document.createElement("div")
+      email.appendChild(nouvelleDivEmail)
+      nouvelleDivEmail.textContent = "Veuillez entrer un email valide"
+  }
   }  
     
     
@@ -85,10 +102,35 @@ function validateChoice(choice) {
 
 //On utilise la fonction validate appellée par Jason dans le html
 // fonction de validation générale
-function validateButton(FirstName, LastName, Email, Quantity, Choice, Terms) {
- 
+function validateButton(FirstName_value, FirstName_id, LastName_value, LastName_id, Email, Quantity, Choice, Terms) {
+  
+  //Effacer les messages d'erreur précédents éventuels
+  // let parent = document.querySelectorAll(".formData")[0] 
+  let elt = document.querySelectorAll(".formData")[0]
+  console.log (elt)
+  if (elt !== null) {
+    elt.textContent = ""
+  }else {}
+  // console.log(elt)
+  // // elt[0].innerText = ""
+  // // console.log(elt)
+  // elt.textContent = ""
+  // console.log(elt)
+  // // elt.remove()
+  
+
+
+ let First_Status = validateName(FirstName_value, FirstName_id)
+ let Name_Status = validateName(LastName_value, LastName_id)
+ let Email_Status = validateEmail(Email)
+ let Quantity_Status = validateNumber(Quantity)
+ let Choice_Status = validateChoice(Choice)
+  // Terms
+
+
+
   if (
-    validateName(FirstName) && validateName(LastName) && validateEmail(Email) && validateNumber(Quantity) && validateChoice(Choice) && Terms
+    First_Status && Name_Status && Email_Status && Quantity_Status && Choice_Status && Terms
   ) {
    return true
   }return false
@@ -113,8 +155,8 @@ function validate(event){
   event.preventDefault(event);
 
 //Ici, on récupère toutes les données du formulaire
-const FirstName = document.getElementById("first").value
-const LastName = document.getElementById("last").value
+const FirstName = document.getElementById("first")
+const LastName = document.getElementById("last")
 const Email = document.getElementById("email").value
 const BirthDate = document.getElementById("birthdate").value
 const Quantity = document.getElementById("quantity").value
@@ -136,7 +178,7 @@ const  NextEvent= document.getElementById("checkbox2").checked
   // console.log("Choice:",validateChoice(Choice))
   // console.log("ValidateButton:",validateButton(FirstName, LastName, Email, Quantity, Choice, Terms))
   
-  if (validateButton(FirstName, LastName, Email, Quantity, Choice, Terms)) {
+  if (validateButton(FirstName.value, FirstName.id, LastName.value, LastName.id,  Email, Quantity, Choice, Terms)) {
     console.log("les conditions sont réunies, le bouton est actif")
   } else {
     console.log("les conditions ne sont pas réunies, le bouton est désactivé")
