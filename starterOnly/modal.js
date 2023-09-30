@@ -106,11 +106,11 @@ function validateButton(FirstName_value, FirstName_id, LastName_value, LastName_
   
   //Effacer les messages d'erreur précédents éventuels
   // let parent = document.querySelectorAll(".formData")[0] 
-  let elt = document.querySelectorAll(".formData")[0]
+  let elt = document.querySelectorAll(".formData div")
   console.log (elt)
-  if (elt !== null) {
-    elt.textContent = ""
-  }else {}
+  // if (elt !== null) {
+  //   elt.textContent = ""
+  // }else {}
   // console.log(elt)
   // // elt[0].innerText = ""
   // // console.log(elt)
