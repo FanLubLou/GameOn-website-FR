@@ -62,6 +62,7 @@ function validateName(name, id) {
       let nouvelleDiv = document.createElement("div")
       formData.appendChild(nouvelleDiv)
       nouvelleDiv.id = ID
+      nouvelleDiv.classList.add("error-message")
       nouvelleDiv.textContent = contenuText
   }
 } 
@@ -78,7 +79,8 @@ function validateName(name, id) {
     } else {
       let email = document.querySelectorAll(".formData")[2]
       let nouvelleDivEmail = document.createElement("div")
-      nouvelleDivEmail.id="ID_email"
+      nouvelleDivEmail.id = "ID_email"
+      nouvelleDivEmail.classList.add("error-message")
       email.appendChild(nouvelleDivEmail)
       nouvelleDivEmail.textContent = "Veuillez entrer un email valide"
   }
@@ -89,7 +91,8 @@ function validateName(name, id) {
     if (Birthdate === "") {
         let BirthDate = document.querySelectorAll(".formData")[3]
         let nouvelleDivBirth = document.createElement("div")
-        nouvelleDivBirth.id="ID_birthdate"
+        nouvelleDivBirth.id = "ID_birthdate"
+        nouvelleDivBirth.classList.add("error-message")
         BirthDate.appendChild(nouvelleDivBirth)
         nouvelleDivBirth.textContent = "Veuillez saisir votre date de naissance"
     } return true
@@ -106,7 +109,8 @@ function validateNumber(number) {
   else {
       let email = document.querySelectorAll(".formData")[4]
       let nouvelleDivQuantity = document.createElement("div")
-      nouvelleDivQuantity.id="ID_quantity"
+      nouvelleDivQuantity.id = "ID_quantity"
+      nouvelleDivQuantity.classList.add("error-message")
       email.appendChild(nouvelleDivQuantity)
       nouvelleDivQuantity.textContent = "Veuillez entrer un nombre entre 0 et 99"
   }
@@ -117,7 +121,8 @@ function validateChoice(choice) {
   if (choice === null) {
       let Choice = document.querySelectorAll(".formData")[5]
       let nouvelleDivChoice = document.createElement("div")
-      nouvelleDivChoice.id="ID_choice"
+      nouvelleDivChoice.id = "ID_choice"
+      nouvelleDivChoice.classList.add("error-message")
       Choice.appendChild(nouvelleDivChoice)
       nouvelleDivChoice.textContent = "Veuillez faire un choix"
   } return true
@@ -127,7 +132,8 @@ function validateTerms(Terms) {
   if (Terms === false) {
       let terms = document.querySelectorAll(".formData")[6]
       let nouvelleDivTerms = document.createElement("div")
-      nouvelleDivTerms.id="ID_Terms"
+      nouvelleDivTerms.id = "ID_Terms"
+      nouvelleDivTerms.classList.add("error-message")
       terms.appendChild(nouvelleDivTerms)
       nouvelleDivTerms.textContent = "Veuillez accepter les conditions d'utilisation"
   } return true
