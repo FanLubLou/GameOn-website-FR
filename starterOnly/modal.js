@@ -49,15 +49,19 @@ function validateName(name, id) {
   } else {
     let formData
     let contenuText
+    let ID
     if (id === "first") {
       formData = document.querySelectorAll(".formData")[0]
       contenuText = "Veuillez entrer 2 caractères ou plus pour le champ prénom"
+      ID = "ID_first"
     } else {
       formData = document.querySelectorAll(".formData")[1]
       contenuText = "Veuillez entrer 2 caractères ou plus pour le champ nom"
+      ID = "ID_name"
       }   
       let nouvelleDiv = document.createElement("div")
       formData.appendChild(nouvelleDiv)
+      nouvelleDiv.id = ID
       nouvelleDiv.textContent = contenuText
   }
 } 
@@ -74,26 +78,65 @@ function validateName(name, id) {
     } else {
       let email = document.querySelectorAll(".formData")[2]
       let nouvelleDivEmail = document.createElement("div")
+      nouvelleDivEmail.id="ID_email"
       email.appendChild(nouvelleDivEmail)
       nouvelleDivEmail.textContent = "Veuillez entrer un email valide"
   }
   }  
-    
+  
+  function validateBirthdate(Birthdate) {
+    //Attention ici, on cherche à savoir si Birthdate est un ensemble vide, ce qui est différent de null
+    if (Birthdate === "") {
+        let BirthDate = document.querySelectorAll(".formData")[3]
+        let nouvelleDivBirth = document.createElement("div")
+        nouvelleDivBirth.id="ID_birthdate"
+        BirthDate.appendChild(nouvelleDivBirth)
+        nouvelleDivBirth.textContent = "Veuillez saisir votre date de naissance"
+    } return true
+  }
+  
+
+
     
 // fonction de validation de la saisie du la valeur numérique pour le nombre de concours
 function validateNumber(number) {
   let numberRegExp = new RegExp("[0-9]+")
   if (numberRegExp.test(number)) {
     return true } 
-  return false
+  else {
+      let email = document.querySelectorAll(".formData")[4]
+      let nouvelleDivQuantity = document.createElement("div")
+      nouvelleDivQuantity.id="ID_quantity"
+      email.appendChild(nouvelleDivQuantity)
+      nouvelleDivQuantity.textContent = "Veuillez entrer un nombre entre 0 et 99"
+  }
 }
 
 // fonction de validation de la présence d'un choix unique de tournoi
 function validateChoice(choice) {
   if (choice === null) {
-    return false
+      let Choice = document.querySelectorAll(".formData")[5]
+      let nouvelleDivChoice = document.createElement("div")
+      nouvelleDivChoice.id="ID_choice"
+      Choice.appendChild(nouvelleDivChoice)
+      nouvelleDivChoice.textContent = "Veuillez faire un choix"
   } return true
 }
+
+function validateTerms(Terms) {
+  if (Terms === false) {
+      let terms = document.querySelectorAll(".formData")[6]
+      let nouvelleDivTerms = document.createElement("div")
+      nouvelleDivTerms.id="ID_Terms"
+      terms.appendChild(nouvelleDivTerms)
+      nouvelleDivTerms.textContent = "Veuillez accepter les conditions d'utilisation"
+  } return true
+}
+
+
+
+
+
 
 //fonction de validation du fait que les conditions générales soient cochées
 // Ici, on ne créé pas de function validateTerms(Terms) // Terms sera soir true (coché) soit false (non coché)
@@ -102,35 +145,94 @@ function validateChoice(choice) {
 
 //On utilise la fonction validate appellée par Jason dans le html
 // fonction de validation générale
-function validateButton(FirstName_value, FirstName_id, LastName_value, LastName_id, Email, Quantity, Choice, Terms) {
+function validateButton(FirstName_value, FirstName_id, LastName_value, LastName_id, Email, BirthDate, Quantity, Choice, Terms) {
   
   //Effacer les messages d'erreur précédents éventuels
-  // let parent = document.querySelectorAll(".formData")[0] 
-  let elt = document.querySelectorAll(".formData div")
-  console.log (elt)
-  // if (elt !== null) {
-  //   elt.textContent = ""
-  // }else {}
-  // console.log(elt)
-  // // elt[0].innerText = ""
-  // // console.log(elt)
-  // elt.textContent = ""
-  // console.log(elt)
-  // // elt.remove()
+  //Première méthode, on on manipule la NodeList créée par les formData List ECHEC
+                // // let parent = document.querySelectorAll(".formData")[0] 
+                // let elt = document.querySelectorAll(".formData div")
+                // let tab_NodeList = Array.from(elt)
+                // // console.log (elt)
+                // if (tab_NodeList[0] !== null) {
+                //   // console.log(elt)
+                //   // // elt[0].textContent = ""
+                //   // elt[0].innerText = ""
+                //   console.log(tab_NodeList[0])
+                // }
+                //   elt.textContent = ""
+                // }else {}
+                // // elt[0].innerText = ""
+                // // console.log(elt)
+                // elt.textContent = ""
+                // console.log(elt)
+                // // elt.remove()
   
+// Seconde méthode, on va vider les div créées précédemment (s'ils existent) et identifiées individuellement par des ID
+  //Je récupère un à un tous les parents
+  let node_Parent_First = document.querySelectorAll(".formData")[0]
+  let node_Parent_Name = document.querySelectorAll(".formData")[1]
+  let node_Parent_email = document.querySelectorAll(".formData")[2]
+  let node_Parent_Birthdate = document.querySelectorAll(".formData")[3]
+  let node_Parent_Quantity = document.querySelectorAll(".formData")[4]
+  let node_Parent_Choice = document.querySelectorAll(".formData")[5]
+  let node_Parent_Terms = document.querySelectorAll(".formData")[6]
+  
+
+  //Je récupère tous les enfants potentiellement créés précédemment
+  let first_recovered = document.getElementById("ID_first")
+  let name_recovered = document.getElementById("ID_name")
+  let email_recovered = document.getElementById("ID_email")
+  let birthdate_recovered = document.getElementById("ID_birthdate")
+  let quantity_recovered = document.getElementById("ID_quantity")
+  let choice_recovered = document.getElementById("ID_choice")
+  let terms_recovered = document.getElementById("ID_Terms")
+
+ 
+
+  //On retire les child s'ils existent
+  if (first_recovered === null) {
+  } else {    
+    node_Parent_First.removeChild(first_recovered)
+  }
+  if (name_recovered === null) {
+  } else {    
+    node_Parent_Name.removeChild(name_recovered)
+  }
+  if (email_recovered === null) {
+  } else {    
+    node_Parent_email.removeChild(email_recovered)
+  }
+  if (birthdate_recovered === null) {
+  } else {
+    node_Parent_Birthdate.removeChild(birthdate_recovered)
+  }
+  if (quantity_recovered === null) {
+  } else {
+    node_Parent_Quantity.removeChild(quantity_recovered)
+  }
+  if (choice_recovered === null) {
+  } else {
+    node_Parent_Choice.removeChild(choice_recovered)
+  }
+  if (terms_recovered === null) {
+  } else {
+    node_Parent_Terms.removeChild(terms_recovered)
+  }
 
 
  let First_Status = validateName(FirstName_value, FirstName_id)
  let Name_Status = validateName(LastName_value, LastName_id)
  let Email_Status = validateEmail(Email)
+ let Birthdate_Status = validateBirthdate(BirthDate) 
  let Quantity_Status = validateNumber(Quantity)
  let Choice_Status = validateChoice(Choice)
-  // Terms
+ validateTerms(Terms) 
+
 
 
 
   if (
-    First_Status && Name_Status && Email_Status && Quantity_Status && Choice_Status && Terms
+    First_Status && Name_Status && Email_Status && Birthdate_Status && Quantity_Status && Choice_Status && Terms
   ) {
    return true
   }return false
@@ -164,6 +266,8 @@ const Choice = document.querySelector("input[name='location']:checked")
 const Terms = document.getElementById("checkbox1").checked
 const  NextEvent= document.getElementById("checkbox2").checked
 
+  
+  console.log(Terms)
 //Je regarde dans la console ce que j'ai au moment du click
   // console.log(FirstName)
   // console.log(LastName)
@@ -178,7 +282,7 @@ const  NextEvent= document.getElementById("checkbox2").checked
   // console.log("Choice:",validateChoice(Choice))
   // console.log("ValidateButton:",validateButton(FirstName, LastName, Email, Quantity, Choice, Terms))
   
-  if (validateButton(FirstName.value, FirstName.id, LastName.value, LastName.id,  Email, Quantity, Choice, Terms)) {
+  if (validateButton(FirstName.value, FirstName.id, LastName.value, LastName.id,  Email, BirthDate, Quantity, Choice, Terms)) {
     console.log("les conditions sont réunies, le bouton est actif")
   } else {
     console.log("les conditions ne sont pas réunies, le bouton est désactivé")
