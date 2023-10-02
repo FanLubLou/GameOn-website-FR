@@ -22,7 +22,7 @@ const closeBtn = document.querySelector(".close");
 closeBtn.addEventListener("click", closeModal)
 
 //Issue#4 On ferme la modale après les remerciements
-closeBtnThks.addEventListener("click", closeModal)
+closeBtnThks.addEventListener("click", emptyAndClose)
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -35,6 +35,28 @@ function launchModal() {
       //Issue#1 Fermer la modale, close modal form
 function closeModal() {
   modalbg.style.display = "none";
+}
+
+function emptyAndClose() {
+  //On vide les champs
+    document.getElementById("first").value = ''
+    document.getElementById("last").value = ''
+    document.getElementById("email").value = ''
+    document.getElementById("birthdate").value = ''
+    document.getElementById("quantity").value = ''
+   
+  // Trouve un moyen de décocher
+  // let Choice = document.querySelector("input[name='location']:checked").value
+  // let Terms = document.getElementById("checkbox1").checked
+  
+  
+    
+
+  //On cache la fenêtre de remerciement
+  const divThks = document.getElementById("thanksContainer")
+  divThks.classList.add("hidden")
+  //On ferme la fenêtre
+  closeModal()
 }
 
 /////////////////////////////////////////////Désactivation du bouton de soumission/////////////////////////
@@ -277,6 +299,7 @@ const BirthDate = document.getElementById("birthdate").value
 const Quantity = document.getElementById("quantity").value
 const Choice = document.querySelector("input[name='location']:checked")
 const Terms = document.getElementById("checkbox1").checked
+  //Ici, je récupère la donnée pour pouvoir l'envoyer  
 const NextEvent = document.getElementById("checkbox2").checked
   
   //Issue#4 on va chercher le bouton C'est parti
