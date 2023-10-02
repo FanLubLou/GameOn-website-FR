@@ -11,11 +11,18 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+  //Issue#4 on récupère le bouton créé pour fermer
+const closeBtnThks = document.getElementById("close-btn-thks")
+
+
       //Issue#1 Fermer la modale, on récupère le bouton X pour fermer
 const closeBtn = document.querySelector(".close");  
 
       //Issue#1 Fermer la modale, on écoute et on appelle sur le click la foncion closeModal
 closeBtn.addEventListener("click", closeModal)
+
+//Issue#4 On ferme la modale après les remerciements
+closeBtnThks.addEventListener("click", closeModal)
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -270,10 +277,13 @@ const BirthDate = document.getElementById("birthdate").value
 const Quantity = document.getElementById("quantity").value
 const Choice = document.querySelector("input[name='location']:checked")
 const Terms = document.getElementById("checkbox1").checked
-const  NextEvent= document.getElementById("checkbox2").checked
-
+const NextEvent = document.getElementById("checkbox2").checked
   
-  console.log(Terms)
+  //Issue#4 on va chercher le bouton C'est parti
+const BtnValidate= document.querySelector("input[type=submit]")
+  //Issue#4 On va chercher la div de remerciement qui va tout cacher
+const divThks = document.getElementById("thanksContainer")
+  
 //Je regarde dans la console ce que j'ai au moment du click
   // console.log(FirstName)
   // console.log(LastName)
@@ -289,7 +299,7 @@ const  NextEvent= document.getElementById("checkbox2").checked
   // console.log("ValidateButton:",validateButton(FirstName, LastName, Email, Quantity, Choice, Terms))
   
   if (validateButton(FirstName.value, FirstName.id, LastName.value, LastName.id,  Email, BirthDate, Quantity, Choice, Terms)) {
-    console.log("les conditions sont réunies, le bouton est actif")
+    BtnValidate.addEventListener("click", divThks.classList.remove("hidden"))
   } else {
     console.log("les conditions ne sont pas réunies, le bouton est désactivé")
   }
