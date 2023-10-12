@@ -323,6 +323,33 @@ input[data-error]::after {
 .close:after {
   transform: rotate(-45deg);
 }
+
+/* Je copie colle le close précédent pour le transformer en close_bis */
+.close_bis {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+.close_bis:before,
+.close_bis:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+.close_bis:before {
+  transform: rotate(45deg);
+}
+.close_bis:after {
+  transform: rotate(-45deg);
+}
 .btn-submit,
 .btn-signup {
   background: #fe142f;
@@ -497,7 +524,7 @@ footer {
 /* Issue#4  */
 .thksContainer {
    
-    background-color: #000000;
+    background-color:  #232323;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

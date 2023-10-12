@@ -12,17 +12,24 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
   //Issue#4 on récupère le bouton créé pour fermer
-const closeBtnThks = document.getElementById("close-btn-thks")
+const closeBtnThks = document.querySelector("#close-btn-thks")
 
 
       //Issue#1 Fermer la modale, on récupère le bouton X pour fermer
-const closeBtn = document.querySelector(".close");  
+const closeBtn = document.querySelector(".close"); 
+
+      //Issue#4 on ecoute aussi la croix de fermeture
+const closeBtn_bis = document.querySelector(".close_bis"); 
+ 
 
       //Issue#1 Fermer la modale, on écoute et on appelle sur le click la foncion closeModal
 closeBtn.addEventListener("click", closeModal)
 
-//Issue#4 On ferme la modale après les remerciements
+      //Issue#4 On ferme la modale après les remerciements
+          //Soit par le gros bouton
 closeBtnThks.addEventListener("click", emptyAndClose)
+          //Soit par la croix
+closeBtn_bis.addEventListener("click", emptyAndClose)
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
