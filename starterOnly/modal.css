@@ -350,6 +350,8 @@ input[data-error]::after {
 .close_bis:after {
   transform: rotate(-45deg);
 }
+
+
 .btn-submit,
 .btn-signup {
   background: #fe142f;

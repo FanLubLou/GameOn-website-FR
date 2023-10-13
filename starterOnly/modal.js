@@ -49,7 +49,7 @@ function emptyAndClose() {
     document.getElementById("first").value = ''
     document.getElementById("last").value = ''
     document.getElementById("email").value = ''
-    document.getElementById("birthdate").value = ''
+    document.getElementById("birthdate").value = null
     document.getElementById("quantity").value = ''
    
   // Trouve un moyen de décocher
@@ -122,16 +122,42 @@ function validateName(name, id) {
   }
   }  
   
-  function validateBirthdate(Birthdate) {
-    //Attention ici, on cherche à savoir si Birthdate est un ensemble vide, ce qui est différent de null
-    if (Birthdate === "") {
-        let BirthDate = document.querySelectorAll(".formData")[3]
-        let nouvelleDivBirth = document.createElement("div")
-        nouvelleDivBirth.id = "ID_birthdate"
-        nouvelleDivBirth.classList.add("error-message")
-        BirthDate.appendChild(nouvelleDivBirth)
-        nouvelleDivBirth.textContent = "Veuillez saisir votre date de naissance"
-    } return true
+function validateBirthdate(Birthdate) {
+
+  //On récupère la date du jour
+  let dateDuJour = new Date()
+  //On formate la date saisie "Birthdate" pour pouvoir la comparer
+  const year = dateDuJour.getFullYear(); // Obtenez l'année
+  const month = String(dateDuJour.getMonth() + 1).padStart(2, '0'); // Obtenez le mois et formatez avec 2 chiffres (de 1 à 12)
+  const day = String(dateDuJour.getDate()).padStart(2, '0'); // Obtenez le jour et formatez avec 2 chiffres (de 1 à 31)
+
+  const DateduJourFormated = `${year}-${month}-${day}`;
+  
+  // let horodatagedateDujour = dateDuJour.getTime();
+  // let horodatageBirthDate = Birthdate.getTime();
+
+  console.log ("Date du jour formatée:", DateduJourFormated)
+  console.log("Date saisie :", Birthdate)
+  
+  // console.log ("horodatagedateDujour:", horodatagedateDujour)
+  // console.log("horodatageBirthDate:", horodatageBirthDate)
+
+  //Attention ici, on cherche à savoir si Birthdate est un ensemble vide, ce qui est différent de null
+  if (Birthdate === "") {
+    let BirthDate = document.querySelectorAll(".formData")[3]
+    let nouvelleDivBirth = document.createElement("div")
+    nouvelleDivBirth.id = "ID_birthdate"
+    nouvelleDivBirth.classList.add("error-message")
+    BirthDate.appendChild(nouvelleDivBirth)
+    nouvelleDivBirth.textContent = "Veuillez saisir votre date de naissance"
+  } else if (Birthdate >= DateduJourFormated) {      
+      let BirthDate = document.querySelectorAll(".formData")[3]
+      let nouvelleDivBirth = document.createElement("div")
+      nouvelleDivBirth.id = "ID_birthdate"
+      nouvelleDivBirth.classList.add("error-message")
+      BirthDate.appendChild(nouvelleDivBirth)
+      nouvelleDivBirth.textContent = "Veuillez saisir une date antérieure à la date du jour"     
+     } return true
   }
   
 
