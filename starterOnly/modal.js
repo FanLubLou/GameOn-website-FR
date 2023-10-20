@@ -11,7 +11,7 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-  //Issue#4 on récupère le bouton créé pour fermer
+    //Issue#4 on récupère le bouton créé pour fermer
 const closeBtnThks = document.querySelector("#close-btn-thks")
 
 
@@ -127,17 +127,17 @@ function validateBirthdate(Birthdate) {
   //On récupère la date du jour
   let dateDuJour = new Date()
   //On formate la date saisie "Birthdate" pour pouvoir la comparer
-  const year = dateDuJour.getFullYear(); // Obtenez l'année
-  const month = String(dateDuJour.getMonth() + 1).padStart(2, '0'); // Obtenez le mois et formatez avec 2 chiffres (de 1 à 12)
-  const day = String(dateDuJour.getDate()).padStart(2, '0'); // Obtenez le jour et formatez avec 2 chiffres (de 1 à 31)
+  const year = dateDuJour.getFullYear(); // j'obtiens ici l'année
+  const month = String(dateDuJour.getMonth() + 1).padStart(2, '0'); // J'obtiens le mois formaté avec 2 chiffres (de 1 à 12)
+  const day = String(dateDuJour.getDate()).padStart(2, '0'); // J'obtiens  le jour et formatez avec 2 chiffres (de 1 à 31)
 
   const DateduJourFormated = `${year}-${month}-${day}`;
   
   // let horodatagedateDujour = dateDuJour.getTime();
   // let horodatageBirthDate = Birthdate.getTime();
 
-  console.log ("Date du jour formatée:", DateduJourFormated)
-  console.log("Date saisie :", Birthdate)
+  // console.log ("Date du jour formatée:", DateduJourFormated)
+  // console.log("Date saisie :", Birthdate)
   
   // console.log ("horodatagedateDujour:", horodatagedateDujour)
   // console.log("horodatageBirthDate:", horodatageBirthDate)
@@ -324,7 +324,7 @@ function validate(event){
   //On empêche le comporte par défaut de submit. Dans le html,on ajoute l'event dans les paramètres de la fonction lors de l'appel
   event.preventDefault(event);
 
-//Ici, on récupère toutes les données du formulaire
+//Issue#2 Ici, on récupère toutes les données du formulaire
 const FirstName = document.getElementById("first")
 const LastName = document.getElementById("last")
 const Email = document.getElementById("email").value
