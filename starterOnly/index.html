@@ -10,12 +10,11 @@
   </head>
   <body>
     <div class="topnav" id="myTopnav">
-        <div class="header-logo">
-          <!-- Issue5 je retire ici le width="auto" height="auto" -->
-          <img alt="logo" src="Logo.png">
-        </div>
+      <div class="header-logo">
+        <!-- Issue5 je retire ici le width="auto" height="auto" -->
+        <img alt="logo" src="Logo.png">
+      </div>
       <div class="main-navbar">
-        
         <!-- Issue5 - Dans la maquette, il n'y a pas de bouton accueil  -->
         <!-- <a href="#" class="active"><span>Accueil</span></a> -->
         <a href="#"><span>Détails de l'évènement</span></a>
@@ -28,7 +27,7 @@
       </div>
     </div>
     <!-- div perdue seule, je la mets en commentaire -->
-  <!-- </div> -->
+    <!-- </div> -->
     <main>
       <div class="hero-section">
         <div class="hero-content">
@@ -55,158 +54,82 @@
       <div class="bground">
         <div class="content">
           <!-- Issue#4, on va créer ici un bloc dédié aux remerciements quand tout sera validé et que l'utilisateur aura cliqué -->
-        <div id="thanksContainer" class="hidden thksContainer">
-          <div class="thanks">
-            <span class="close_bis"></span>
-            <h4>Merci ! <br> Votre réservation a été reçue.</h4>
-          </div>
-          <button class="btn-submit" id="close-btn-thks">Fermer</button>
-        </div>           
+          <div id="thanksContainer" class="hidden thksContainer">
+            <div class="thanks">
+              <span class="close_bis"></span>
+              <h4>Merci !<br>Votre réservation a été reçue.</h4>
+            </div>
+            <button class="btn-submit" id="close-btn-thks">Fermer</button>
+          </div>           
           <span class="close"></span>
           <div class="modal-body">          
-
-
-
             <!-- Issue#2, ici on aura besoin de l'event en paramètre pour empêcher le comportement par défaut de submit -->
             <form
               name="reserve"
               action="index.html"
               method="get"
-              
               onsubmit="return validate(event);"
             >
-<!-- Issue#2, ici on lie les id avec les for -->
-<!-- Issue#4, j'ai retiré le minlength pour le prénom -->
+              <!-- Issue#2, ici on lie les id avec les for -->
+              <!-- Issue#4, j'ai retiré le minlength pour le prénom -->
               <div
-                class="formData">
+                class="formData"
+              >
                 <label for="first">Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
-                  
                 ><br>
-              </div>
-              <div
-                class="formData">
+              </div>         
+              <div class="formData">
                 <label for="last">Nom</label><br>
-                <input
-                  class="text-control"
-                  type="text"
-                  id="last"
-                  name="last"
-                ><br>
+                <input class="text-control" type="text" id="last" name="last"><br>
               </div>
-              <div
-                class="formData">
+              <div class="formData">
                 <label for="email">E-mail</label><br>
-<!-- Issue#4 Ici, je mets type text plutôt que type email pour visualiser ma propre validation -->
-                <input
-                  class="text-control"
-                  type="text"
-                  id="email"
-                  name="email"
-                ><br>
+                <!-- Issue#4 Ici, je mets type text plutôt que type email pour visualiser ma propre validation -->
+                <input class="text-control" type="text" id="email" name="email"><br>
               </div>
-              <div
-                class="formData">
+              <div class="formData">
                 <label for="birthdate">Date de naissance</label><br>
-                <input
-                  class="text-control"
-                  type="date"
-                  id="birthdate"
-                  name="birthdate"
-                ><br>
+                <input class="text-control" type="date" id="birthdate" name="birthdate"><br>
               </div>
-              <div
-                class="formData">
+              <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div
-                class="formData">
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location1"
-                  name="location"
-                  value="New York"
-                >
+              <div class="formData">
+                <input class="checkbox-input" type="radio" id="location1" name="location" value="New York">
                 <label class="checkbox-label" for="location1">
-                  <span class="checkbox-icon"></span>
-                  New York</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location2"
-                  name="location"
-                  value="San Francisco"
-                >
+                  <span class="checkbox-icon"></span>New York
+                </label>
+                <input class="checkbox-input" type="radio" id="location2" name="location" value="San Francisco">
                 <label class="checkbox-label" for="location2">
-                  <span class="checkbox-icon"></span>
-                  San Francisco</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location3"
-                  name="location"
-                  value="Seattle"
-                >
+                  <span class="checkbox-icon"></span>San Francisco
+                </label>
+                <input class="checkbox-input" type="radio" id="location3" name="location" value="Seattle">
                 <label class="checkbox-label" for="location3">
                   <span class="checkbox-icon"></span>
                   Seattle</label
                 >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location4"
-                  name="location"
-                  value="Chicago"
-                >
+                <input class="checkbox-input" type="radio" id="location4" name="location" value="Chicago">
                 <label class="checkbox-label" for="location4">
                   <span class="checkbox-icon"></span>
-                  Chicago</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location5"
-                  name="location"
-                  value="Boston"
-                >
-                <label class="checkbox-label" for="location5">
+                  Chicago</label>
+                <input class="checkbox-input" type="radio" id="location5" name="location" value="Boston">                <label class="checkbox-label" for="location5">                  <span class="checkbox-icon"></span>
+                  Boston</label>
+                <input class="checkbox-input" type="radio" id="location6" name="location" value="Portland">                <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>
-                  Boston</label
-                >
-                <input
-                  class="checkbox-input"
-                  type="radio"
-                  id="location6"
-                  name="location"
-                  value="Portland"
-                >
-                <label class="checkbox-label" for="location6">
-                  <span class="checkbox-icon"></span>
-                  Portland</label
-                >
+                  Portland</label>
               </div>
-
-              <div
-                class="formData">
-                <input
-                  class="checkbox-input"
-                  type="checkbox"
-                  id="checkbox1"
-                  checked
-                >
+              <div class="formData">
+                <input class="checkbox-input" type="checkbox" id="checkbox1" checked>
                 <!-- Issue#5 on retire le required -->
                 <label class="checkbox2-label" for="checkbox1">
-                  <span class="checkbox-icon"></span>
-                  J'ai lu et accepté les conditions d'utilisation.
+                  <span class="checkbox-icon"></span>J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2">
@@ -217,11 +140,7 @@
                 <br>
               </div>
               <!-- Issue#5 on retire la classe button -->
-              <input
-                class="btn-submit"
-                type="submit"
-                value="C'est parti"
-              >
+              <input class="btn-submit" type="submit" value="C'est parti">
             </form>
           </div>
         </div>
@@ -236,3 +155,10 @@
     <script src="modal.js" defer></script>
   </body>
 </html>
+
+
+
+
+
+
+
